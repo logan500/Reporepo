@@ -23,8 +23,8 @@
 
         {!! Form::submit('Iniciar',['class'=>'btn btn-primary']) !!}
    	 {!! Form::close() !!}
-    <a href="{{ url('empleado') }}">Empleado</a><br>
-    <a href="{{ url('empleado/create') }}">Crear Empleado</a><br>
+    <a href="{{ url('user') }}">Usuario</a><br>
+    <a href="{{ url('user/create') }}">Crear Usuario</a><br>
     <a href="{{ url('empleado') }}">Empleado</a><br>
     <a href="{{ url('empleado/create') }}">Crear Empleado</a>
 

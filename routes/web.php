@@ -17,11 +17,15 @@ Route::get('name/{nombre}','TurnoController@nombre');
 Route::resource('turnos', 'TurnoController');
 
 Route::resource('empleado', 'EmpleadoController');
+// Route::group(['middleware'=>'auth'], function(){
+// 	Route::resource('empleado', 'EmpleadoController');
+// });
+
 
 Route::resource('user', 'UserController');
 
 Route::resource('log', 'LogController');
-Route::resource('logout', 'LogController@logout');
+Route::get('logout', 'LogController@logout');
 
 
 // Route::get('/', function () {
