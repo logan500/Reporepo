@@ -34,6 +34,7 @@ class EmpleadoController extends Controller
         ->join('cat_departamentos as c', 'a.id_departamento', '=', 'c.id')   
         ->select('a.*','b.*','c.*') 
         ->get();
+
         return view('empleado.index',compact('empleados'));
         //return $empleados;
         // $users = DB::table('users')
@@ -41,6 +42,12 @@ class EmpleadoController extends Controller
         //     ->join('orders', 'users.id', '=', 'orders.user_id')
         //     ->select('users.*', 'contacts.phone', 'orders.price')
         //     ->get();
+        //$empleados = Empleado::all();
+        //directo a vista;
+        //@foreach ($empleado as $empleados)
+        //{!! $empleado->id!!}
+        //{!! $empleado->paterno!!}
+        //@endeach
     }
 
     /**
@@ -50,6 +57,18 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
+        $empleado = new Empleado;
+        // $sexos = array( 'HOMBRE'=>'HOMBRE',
+        //                 'MUJER' => 'MUJER'
+        //                 );
+        // $departamento= Departamento::all()->pluck('id','descripcion');
+        // $turnos = Turno::all()->pluck('nombre','id');
+        // return view('empleado.create',[ 'empleado'=>'$empleado',
+        //                                 'sexos'=>'$sexos',
+        //                                 'turnos'=>'$turnos',
+        //                                 'departamento'=>'$departamento'
+        //                                 ]);
+        //Form::select('sexo','$sexos','',['class'=>'form-control'])
          return view('empleado.create');
     }
 
@@ -82,7 +101,10 @@ class EmpleadoController extends Controller
         $empleado->id_departamento = $departamentoId;
         $empleado->id_turno = $turnoId;
         $empleado->save();  
-    
+        
+        // $empleado = new Empleado($->all());
+        // $empleado->save();
+        // si se usa un form select jala automaticamente los demas modelos
         return Redirect::to('empleado');
     }
 
@@ -109,8 +131,6 @@ class EmpleadoController extends Controller
         $turno = Turno::find($empleado->id_turno);
         $departamento = Departamento::find($empleado->id_departamento);
         //$categories = category::all()->lists('name');
-
-
         // $empleados = DB::table('empleados as a')
         // ->join('cat_turnos as b', 'a.id_turno', '=', 'b.id')
         // ->join('cat_departamentos as c', 'a.id_departamento', '=', 'c.id')  
@@ -118,6 +138,7 @@ class EmpleadoController extends Controller
         // ->select('a.*','b.*','c.*') 
         // ->get();
         //  return view('empleado.edit',['empleados'=>$empleados]);
+        //return view ('empleado.edit',compact('empleados','turno','departamento') );
         return view('empleado.edit')->with('empleado', $empleado)->with('turno', $turno)->with('departamento', $departamento);
     }
 
@@ -145,6 +166,9 @@ class EmpleadoController extends Controller
         $departamento->descripcion = $request->descripcion;
 
         $turno->nombreTurno = $request->turno;
+
+        // $empleado->id_tuno =$request->input(id_turno);
+        // $empleado->id_departamento =$request->input(id_departamento);
 
         $empleado->save();
         $departamento->save();

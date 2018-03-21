@@ -37,8 +37,11 @@ class TurnoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TurnoCreatePrequest $request)
+    public function store(Request $request)
     {
+         $validatedData = $request->validate([
+            'nombreTurno' => 'required',
+        ]);
         $turnoxs = new Turno;
         $turnoxs->nombreTurno = $request->nombreTurno;
         $turnoxs->save();

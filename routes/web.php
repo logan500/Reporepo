@@ -19,7 +19,7 @@ Route::resource('turnos', 'TurnoController');
 Route::resource('empleado', 'EmpleadoController');
 // Route::group(['middleware'=>'auth'], function(){
 // 	Route::resource('empleado', 'EmpleadoController');
-// });
+//});
 
 
 Route::resource('user', 'UserController');

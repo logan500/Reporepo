@@ -9,9 +9,21 @@
 
 </head>
 <body>
-	@include('alerts.request')
+
+	@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     {!! Form::open(['route'=>'turnos.store','method'=>'POST']) !!}
-        @include('turno.forms.turno');
+        <div class="form-group">
+            {!! Form::label('descripcion','descripcion: ') !!}
+            {!! Form::text('nombreTurno',null,['class' =>'form-control','placeholder' => 'ingresa el turno']) !!}
+        </div>
         {!! Form::submit('Registrar',['class'=>'btn btn-primary']) !!}
     {!! Form::close() !!}
     <h1>Hola mundo desde crear turno</h1>
